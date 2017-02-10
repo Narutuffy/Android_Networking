@@ -5,11 +5,11 @@ package com.example.vamsirao.network;
  */
 
 public class Earthquake {
-    private int magnitude;
+    private String magnitude;
     private String location;
     private String date;
 
-    public Earthquake(int magnitude,String location,String date){
+    public Earthquake(String magnitude,String location,String date){
        this.magnitude=magnitude;
         this.location=location;
         this.date=date;
@@ -23,7 +23,7 @@ public class Earthquake {
         return location;
     }
 
-    public int getMagnitude() {
+    public String getMagnitude() {
         return magnitude;
     }
 }
