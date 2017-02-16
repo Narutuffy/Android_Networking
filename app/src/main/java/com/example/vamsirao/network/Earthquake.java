@@ -5,11 +5,11 @@ package com.example.vamsirao.network;
  */
 
 public class Earthquake {
-    private String magnitude;
+    private double magnitude;
     private String location;
     private long timeMilliseconds;
 
-    public Earthquake(String magnitude,String location,long timeMilliseconds){
+    public Earthquake(double magnitude,String location,long timeMilliseconds){
        this.magnitude=magnitude;
         this.location=location;
         this.timeMilliseconds=timeMilliseconds;
@@ -23,7 +23,7 @@ public class Earthquake {
         return location;
     }
 
-    public String getMagnitude() {
+    public double getMagnitude() {
         return magnitude;
     }
 }
