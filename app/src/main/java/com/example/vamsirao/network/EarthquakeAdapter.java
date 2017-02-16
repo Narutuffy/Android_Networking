@@ -22,6 +22,8 @@ import java.util.SimpleTimeZone;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
+    private static final String LOCATION_SEPARATOR=" of ";
+
     public EarthquakeAdapter(Context context, List<Earthquake> earthquakes) {
         super(context, 0, earthquakes);
     }
@@ -39,11 +41,30 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView magnitudeView= (TextView)listItemView.findViewById(R.id.magnitude);
 
         magnitudeView.setText(currentEarthquake.getMagnitude());
+//-----------------------------------------------------------------------------------
+       // TextView locationView= (TextView)listItemView.findViewById(R.id.location);
+        String originalLocation = currentEarthquake.getLocation();
+        String primaryLocation;
+        String offsetLocation;
 
-        TextView locationView= (TextView)listItemView.findViewById(R.id.location);
+        if(originalLocation.contains(LOCATION_SEPARATOR)){
+            String[] parts= originalLocation.split(LOCATION_SEPARATOR);
+            offsetLocation=parts[0]+LOCATION_SEPARATOR;
+            primaryLocation= parts[1];
+        }else{
+            offsetLocation= getContext().getString(R.string.near_the);
+            primaryLocation=originalLocation;
+        }
 
-        locationView.setText(currentEarthquake.getLocation());
+        TextView offsetView= (TextView)listItemView.findViewById(R.id.location_offset);
+        offsetView.setText(offsetLocation);
 
+        TextView primaryLocationView=(TextView)listItemView.findViewById(R.id.primary_location);
+        primaryLocationView.setText(primaryLocation);
+
+
+        //locationView.setText(currentEarthquake.getLocation());
+//--------------------------------------------------------------------------------
         Date dateObject = new Date (currentEarthquake.getTimeMilliseconds());
 
         TextView dateView= (TextView)listItemView.findViewById(R.id.date);
