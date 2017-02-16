@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 /**
  * Created by Vamsi Rao on 2/10/2017.
@@ -40,8 +44,21 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         locationView.setText(currentEarthquake.getLocation());
 
+        Date dateObject = new Date (currentEarthquake.getTimeMilliseconds());
+
         TextView dateView= (TextView)listItemView.findViewById(R.id.date);
-        dateView.setText(currentEarthquake.getDate());
+
+        SimpleDateFormat dateFormatter= new SimpleDateFormat("MMM DD,yyyy");
+        String formattedDate= dateFormatter.format(dateObject);
+        dateView.setText(formattedDate);
+
+        SimpleDateFormat timeFormatter= new SimpleDateFormat("h:mm a");
+        String formattedTime= timeFormatter.format(dateObject);
+
+        TextView timeView= (TextView)listItemView.findViewById(R.id.time);
+
+        timeView.setText(formattedTime);
+
 
         return listItemView;
 

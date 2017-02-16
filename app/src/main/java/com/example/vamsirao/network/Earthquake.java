@@ -7,16 +7,16 @@ package com.example.vamsirao.network;
 public class Earthquake {
     private String magnitude;
     private String location;
-    private String date;
+    private long timeMilliseconds;
 
-    public Earthquake(String magnitude,String location,String date){
+    public Earthquake(String magnitude,String location,long timeMilliseconds){
        this.magnitude=magnitude;
         this.location=location;
-        this.date=date;
+        this.timeMilliseconds=timeMilliseconds;
     }
 
-    public String getDate() {
-        return date;
+    public long getTimeMilliseconds() {
+        return timeMilliseconds;
     }
 
     public String getLocation() {
