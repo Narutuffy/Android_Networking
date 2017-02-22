@@ -39,6 +39,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_view, parent, false);
         }
+        //Getting current Earthquake object
         Earthquake currentEarthquake = getItem(position);
         String formattedMagnitude = formatMagnitude(currentEarthquake.getMagnitude());
 
@@ -47,13 +48,19 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
           magnitudeView.setText(formattedMagnitude);
 
+        //Getting Magnitude View Background
         GradientDrawable magnitudeCircle=(GradientDrawable)magnitudeView.getBackground();
 
+        //Using getMagnitudeColor to get the color of the magnitudeView based on the intensity of earthquake
         int magnitudeColor=getMagnitudeColor(currentEarthquake.getMagnitude());
 
+        //Set the background
         magnitudeCircle.setColor(magnitudeColor);
 //-----------------------------------------------------------------------------------
         // TextView locationView= (TextView)listItemView.findViewById(R.id.location);
+
+       //Extracting the primary location and offset location from original location
+
         String originalLocation = currentEarthquake.getLocation();
         String primaryLocation;
         String offsetLocation;
@@ -76,6 +83,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         //locationView.setText(currentEarthquake.getLocation());
 //--------------------------------------------------------------------------------
+
+        //Setting Date View and Time View with proper formatting
         Date dateObject = new Date(currentEarthquake.getTimeMilliseconds());
 
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);

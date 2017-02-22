@@ -17,9 +17,9 @@ import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity {
 
+
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private static final String USGS_REQUEST_URL=  "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
-
     private EarthquakeAdapter mAdapter;
 
     @Override
