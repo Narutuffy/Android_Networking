@@ -78,6 +78,10 @@ public class EarthquakeActivity extends AppCompatActivity implements android.app
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
+
+        View loadingIndicator= findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
+
         mAdapter.clear();
 
         if(earthquakes != null && !earthquakes.isEmpty()){
