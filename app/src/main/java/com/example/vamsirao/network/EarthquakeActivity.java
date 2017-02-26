@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +25,23 @@ public class EarthquakeActivity extends AppCompatActivity implements android.app
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private static final String USGS_REQUEST_URL=  "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
     private EarthquakeAdapter mAdapter;
+    private TextView mEmptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
+        mEmptyStateTextView=(TextView)findViewById(R.id.empty_view);
+
+
 
 
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list_view);
+
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         // Create a new {@link ArrayAdapter} of earthquakes
         mAdapter= new EarthquakeAdapter(this,new ArrayList<Earthquake>());
@@ -76,6 +83,7 @@ public class EarthquakeActivity extends AppCompatActivity implements android.app
         if(earthquakes != null && !earthquakes.isEmpty()){
             mAdapter.addAll(earthquakes);
         }
+        mEmptyStateTextView.setText("No Earthquakes Found");
     }
 
     @Override
