@@ -2,8 +2,11 @@ package com.example.vamsirao.network;
 
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -61,9 +64,22 @@ public class EarthquakeActivity extends AppCompatActivity implements android.app
             }
         });
         /////
+
+        ConnectivityManager connectivityManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo= connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo!=null && networkInfo.isConnected()){
+
         android.app.LoaderManager loaderManager= getLoaderManager();
 
-        loaderManager.initLoader(EARTHQUAKE_LOADERID,null,this);
+        loaderManager.initLoader(EARTHQUAKE_LOADERID,null,this);}
+        else{
+            View loadingIndicator= findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.GONE);
+
+            mEmptyStateTextView.setText("No Internet Connection");
+        }
 
         ////
 
